@@ -1,0 +1,29 @@
+DIANN_workflows
+|
+|-scripts
+| |
+| |-diann_call.sh (diann call to be fed in cfg, other remaining args, 
+| |                 but also has presets for specific DIANN functions (ie. lib gen vs fasta search))
+| |
+| |_running_diann_callsh.sh (calls the diann, adds in info like FASTA, JOB INDEX to be encoded in the file name)
+|
+|-spectral_libraries
+| |
+| |-logs
+| | |
+| | |-{DATERUN}_{FASTA_NAME}_{CFG_NAME}_{SLURM_JOB_ID}.txt # slurm output log
+| | |
+| | |-{DATERUN}_{FASTA_NAME}_{CFG_NAME}_{SLURM_JOB_ID}.log.txt # DIANN OUTPUT log, diverted from the other spec lib folder to keep it clean
+| | |
+| | |_{DATERUN}_{FASTA_NAME}_{CFG_NAME}_{SLURM_JOB_ID}_error.txt
+| | 
+| |_spectral_libraries
+|   | 
+|   |_{DATERUN}_{FASTA_NAME}_{CFG_NAME}_{SLURM_JOB_ID}.predicted.speclib  
+|          # log files for this spec lib will have the same exact name
+|
+|_configs
+  |
+  |-{human_readable_config_name1}.cfg # contains all DIANN search space parameters not tied to filepaths (no FASTA, outputs paths, verbose, threads) # possible can encode enough info such that lib gen and fasta search can leverage the same cfg file? 
+  |
+  |_{human_readable_config_name2}.cfg
