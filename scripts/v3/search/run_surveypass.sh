@@ -12,6 +12,8 @@ FILE_CFG="/hpc/projects/mass_spec/eileenwang/DIANN/DIANN_worfklows/testing/test3
 
 SEARCH_CFG="/hpc/projects/mass_spec/eileenwang/DIANN/DIANN_worfklows/testing/test3_2pass/configs/20260722_search_FDR1_MA15_RTprof.cfg"
 
+CHECK_MASS_ACC=false
+
 THREADS=32
 MEM="512G"
 TIME="01-00:00:00"
@@ -19,28 +21,15 @@ TIME="01-00:00:00"
 FASTA_TAG="$(basename "${FASTA}" .fas)"
 SPECLIB_TAG="$(basename "${SPECLIB}" .predicted.speclib)"
 
-SURVEY=false
+# Create directories if they don't exist
+mkdir -p "${OUT_DIR}/survey_pass/logs"
 
-if [[ "${SURVEY}" == true ]]; then
-  MASS_ACC_FLAG="--individual-mass-acc"
-  OUT_SUBDIR="${OUT_DIR}/survey_pass"
-
-else
-  MASS_ACC_FLAG=""
-  OUT_SUBDIR="${OUT_DIR}/first_pass"
-  mkdir -p "${OUT_SUBDIR}/quant"
-  mkdir -p "${OUT_SUBDIR}/empirical_library"
-fi
-
-mkdir -p "${OUT_SUBDIR}/logs"
-mkdir -p "${OUT_SUBDIR}/reports"
-
-export FASTA SEARCH_CFG OUT_DIR THREADS SPECLIB FILE_CFG OUT_SUBDIR SURVEY
+export FASTA SEARCH_CFG OUT_DIR THREADS SPECLIB FILE_CFG CHECK_MASS_ACC
 
 sbatch \
-  --job-name="${DATE}_${EXPERIMENT_NAME}_firstpass" \
-  --output="${OUT_SUBDIR}/logs/%x_%j.txt" \
-  --error="${OUT_SUBDIR}/logs/%x_%j_error.txt" \
+  --job-name="${DATE}_${EXPERIMENT_NAME}_surveypass" \
+  --output="${OUT_DIR}/survey_pass/logs/%x_%j.txt" \
+  --error="${OUT_DIR}/survey_pass/logs/%x_%j_error.txt" \
   --cpus-per-task="${THREADS}" \
   --mem="${MEM}" \
   --time="${TIME}" \

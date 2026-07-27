@@ -9,7 +9,8 @@ diann \
 --cfg "${FILE_CFG}" \
 --lib "${EMPLIB}" \
 --fasta "${FASTA}" \
---temp "${OUT_DIR}/second_pass/quant" \
+--temp "${OUT_DIR}/first_pass/quant" \
 --out "${OUT_DIR}/second_pass/secondpass_report.parquet" \
+--matrices \
 --threads "${THREADS}" \
 --verbose 1 \

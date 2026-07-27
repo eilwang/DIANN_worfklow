@@ -1,0 +1,20 @@
+# Example configuration for first pass survey search
+# Copy and modify for your project
+
+experiment:
+  name: "FBLM009"
+
+paths:
+  out_dir: "/hpc/projects/mass_spec/projects/FBLM009/search_result/diann/diann261/FBLM009_legacyQuant/search"
+  fasta: "/hpc/projects/mass_spec/FASTA/2026-07-23-sp_tr_isoforms-contam-human_UP000005640_FBLM008_009.fas"
+  speclib: "/hpc/projects/mass_spec/projects/FBLM009/search_result/diann/diann261/FBLM009_legacyQuant/insilico_speclib/20260723_2026-07-23-sp_tr_isoforms-contam-human_UP000005640_FBLM008_009_20260722_searchspace_tryptic_L730_C14_C_35020126.predicted.speclib"
+  file_cfg: "/hpc/projects/mass_spec/projects/FBLM009/search_result/diann/diann261/FBLM009_legacyQuant/configs/FBLM009_files.cfg"
+  search_cfg: "/hpc/projects/mass_spec/projects/FBLM009/search_result/diann/diann261/FBLM009_legacyQuant/configs/20260722_search_LgQuant_FDR1_MA15_W7_RTprof.cfg"
+
+options:
+  search_mode: "firstpass"  # Options: "firstpass", "survey", or "secondpass"
+
+slurm:
+  threads: 128
+  memory: "512G"
+  time: "01-00:00:00"
