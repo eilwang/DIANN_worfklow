@@ -29,9 +29,6 @@ elif [[ "${SEARCH_MODE}" == "firstpass" ]]; then
   mkdir -p "${OUT_SUBDIR}/empirical_library"
 
 else
-  OUT_SUBDIR="${OUT_DIR}/second_pass"
-
-else
   echo "ERROR: Unknown SEARCH_MODE='${SEARCH_MODE}'" >&2
   echo "Valid values: 'survey', 'firstpass' (or 'first_pass'), 'secondpass' (or 'second_pass')" >&2
   exit 1
