@@ -21,20 +21,33 @@ eval "$(python3 parse_run_param.py "${RUN_PARAM}")"
 
 FASTA_TAG="$(basename "${FASTA}" .fas)"
 
+# Determine base output subdirectory name
 if [[ "${SEARCH_MODE}" == "survey" ]]; then
-  OUT_SUBDIR="${OUT_DIR}/survey_pass"
-
+  BASE_SUBDIR="survey_pass"
 elif [[ "${SEARCH_MODE}" == "firstpass" ]]; then
-  OUT_SUBDIR="${OUT_DIR}/first_pass"
-  mkdir -p "${OUT_SUBDIR}/empirical_library"
-
+  BASE_SUBDIR="first_pass"
+elif [[ "${SEARCH_MODE}" == "secondpass" ]]; then
+  BASE_SUBDIR="second_pass"
 else
   echo "ERROR: Unknown SEARCH_MODE='${SEARCH_MODE}'" >&2
   echo "Valid values: 'survey', 'firstpass' (or 'first_pass'), 'secondpass' (or 'second_pass')" >&2
   exit 1
 fi
 
-if [[ -z "${QUANT_DIR}" ]]; then
+# Apply out_suffix if specified
+if [[ -n "${OUT_SUFFIX:-}" ]]; then
+  OUT_SUBDIR="${OUT_DIR}/${BASE_SUBDIR}_${OUT_SUFFIX}"
+else
+  OUT_SUBDIR="${OUT_DIR}/${BASE_SUBDIR}"
+fi
+
+# Create empirical_library for firstpass
+if [[ "${SEARCH_MODE}" == "firstpass" ]]; then
+  mkdir -p "${OUT_SUBDIR}/empirical_library"
+fi
+
+# Set QUANT_DIR if not specified
+if [[ -z "${QUANT_DIR:-}" ]]; then
   QUANT_DIR="${OUT_SUBDIR}/quant"
 fi
 

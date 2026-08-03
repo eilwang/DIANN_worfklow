@@ -7,6 +7,8 @@ experiment:
 paths:
   out_dir: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/searches/all"
   fasta: "/hpc/projects/mass_spec/FASTA/2026-07-20-reviewed-contam-Human_UP000005640.fas"
+  quant_dir: "" # if empty, defaults to out_subdir/quant; specify to use a shared quant dir across multiple searches (e.g., chunking)
+  out_suffix: "" # if empty, uses out_dir/search_mode; if specified, appends to create out_dir/search_mode_suffix
   speclib: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/searches/all/first_pass/empirical_library/20260723_LIPR026_027_all_firstpass_35023337.empirical.parquet"
   file_cfg: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/searches/all/manifest.cfg"
   search_cfg: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/searches/all/20260722_search_LgQuant_FDR1_MA15_W7_RTprof.cfg"

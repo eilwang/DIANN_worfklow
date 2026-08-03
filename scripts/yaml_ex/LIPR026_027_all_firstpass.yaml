@@ -6,7 +6,8 @@ experiment:
 
 paths:
   out_dir: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/searches/all"
-  quant_dir: "" # if quant_dir not specified, will use out_dir/quant -> helpful for if doing multiple searches to the same quant dir (ie. chunking out a large search)
+  quant_dir: "" # if empty, defaults to out_subdir/quant; specify to use a shared quant dir across multiple searches (e.g., chunking)
+  out_suffix: "" # if empty, uses out_dir/search_mode; if specified, appends to create out_dir/search_mode_suffix
   fasta: "/hpc/projects/mass_spec/FASTA/2026-07-20-reviewed-contam-Human_UP000005640.fas"
   speclib: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/insilico_libraries/20260723_2026-07-20-reviewed-contam-Human_UP000005640_20260722_searchspace_tryptic_L730_C14_noC_35020150.predicted.speclib"
   file_cfg: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/searches/all/manifest.cfg"

@@ -18,6 +18,8 @@ KEY_MAPPINGS = {
     "slurm.partition": "PARTITION",
     "paths.fasta": "FASTA",
     "paths.out_dir": "OUT_DIR",
+    "paths.quant_dir": "QUANT_DIR",
+    "paths.out_suffix": "OUT_SUFFIX",
     "paths.speclib": "SPECLIB",
     "paths.file_cfg": "FILE_CFG",
     "paths.search_cfg": "SEARCH_CFG",
