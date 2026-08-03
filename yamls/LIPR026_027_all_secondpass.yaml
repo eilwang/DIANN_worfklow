@@ -1,0 +1,20 @@
+# Example configuration for first pass survey search
+# Copy and modify for your project
+
+experiment:
+  name: "LIPR026_027_all"
+
+paths:
+  out_dir: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/searches/all"
+  fasta: "/hpc/projects/mass_spec/FASTA/2026-07-20-reviewed-contam-Human_UP000005640.fas"
+  speclib: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/searches/all/first_pass/empirical_library/20260723_LIPR026_027_all_firstpass_35023337.empirical.parquet"
+  file_cfg: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/searches/all/manifest.cfg"
+  search_cfg: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/searches/all/20260722_search_LgQuant_FDR1_MA15_W7_RTprof.cfg"
+
+options:
+  search_mode: "secondpass"  # Options: "firstpass", "survey", or "secondpass"
+
+slurm:
+  threads: 128
+  memory: "750G"
+  time: "01-00:00:00"

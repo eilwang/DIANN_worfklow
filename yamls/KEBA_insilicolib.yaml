@@ -1,0 +1,12 @@
+# Example configuration for in-silico spectral library prediction
+# Copy and modify for your project
+
+paths:
+  fasta: "/hpc/projects/mass_spec/FASTA/2026-07-20-reviewed-contam-Human_UP000005640.fas"
+  search_space_cfg: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/configs/20260722_searchspace_tryptic_L730_C14_noC.cfg"
+  speclib_dir: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/insilico_libraries"
+
+slurm:
+  threads: 128
+  memory: "512G"
+  time: "1:00:00"
