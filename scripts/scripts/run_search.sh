@@ -34,7 +34,11 @@ else
   exit 1
 fi
 
-mkdir -p "${OUT_SUBDIR}/quant"
+if [[ -z "${QUANT_DIR}" ]]; then
+  QUANT_DIR="${OUT_SUBDIR}/quant"
+fi
+
+mkdir -p "${QUANT_DIR}"
 mkdir -p "${OUT_SUBDIR}/logs"
 mkdir -p "${OUT_SUBDIR}/reports"
 
