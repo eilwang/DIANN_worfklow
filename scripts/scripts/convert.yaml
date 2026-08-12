@@ -1,0 +1,11 @@
+# Configuration for converting spectral library to parquet format
+# Copy and modify for your project
+
+paths:
+  speclib: "/hpc/projects/mass_spec/projects/KEBA001/search_result/exploratory/diann/diann261/spectral_library/ZB/20260807_2026-07-30-zebrafish_zbpicoV1_mcherry_sp_tr_isoforms-contam-UP000000437_defaulttryptic_noRedAlk_MC2_35179984.predicted.speclib"
+  out_dir: "/hpc/projects/mass_spec/projects/KEBA001/search_result/exploratory/diann/diann261/spectral_library/ZB"
+
+slurm:
+  threads: 32
+  memory: "128G"
+  time: "0:30:00"
