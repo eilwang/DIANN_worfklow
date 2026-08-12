@@ -30,6 +30,9 @@ KEY_MAPPINGS = {
     "options.survey": "SURVEY",
 }
 
+# Keys that should always be exported as arrays, even if single values
+ARRAY_KEYS = {"FILE_CFG"}
+
 def flatten_dict(d: Dict[str, Any], parent_key: str = '', sep: str = '.') -> Dict[str, Any]:
     """Flatten nested dictionary with dot notation."""
     items = []
@@ -55,6 +58,9 @@ def format_value(value: Any) -> str:
         return 'true' if value else 'false'
     elif isinstance(value, (int, float)):
         return str(value)
+    elif isinstance(value, list):
+        # Format lists as space-separated quoted strings in bash array format
+        return '(' + ' '.join(f'"{item}"' for item in value) + ')'
     else:
         # Quote strings
         return f'"{value}"'
@@ -80,6 +86,11 @@ def main():
         # Export all variables
         for key, value in sorted(flat_config.items()):
             var_name = get_bash_var_name(key)
+            
+            # Force certain keys to be arrays even if single values
+            if var_name in ARRAY_KEYS and not isinstance(value, list):
+                value = [value] if value else []
+            
             var_value = format_value(value)
             print(f'{var_name}={var_value}')
         

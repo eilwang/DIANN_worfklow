@@ -78,29 +78,46 @@ else
 fi
 
 if [[ "${SEARCH_MODE}" == "survey" ]]; then
-  ADD_FLAGS="--individual-windows"
+  ADD_FLAGS=(--individual-windows)
 elif [[ "${SEARCH_MODE}" == "firstpass" ]]; then
-  ADD_FLAGS="--gen-spec-lib \
-  --out-lib "${OUT_DIR}/first_pass/empirical_library/${OUTNAME}.empirical.parquet" \
-  --export-quant \
-  --matrices \ "
+  ADD_FLAGS=(
+    --gen-spec-lib
+    --out-lib "${OUT_DIR}/first_pass/empirical_library/${OUTNAME}.empirical.parquet"
+    --export-quant
+    --matrices
+  )
 else
-  ADD_FLAGS="--export-quant \
-  --matrices"
+  ADD_FLAGS=(
+    --export-quant
+    --matrices
+  )
 fi
 
-diann \
---cfg "${SEARCH_CFG_TO_USE}" \
---cfg "${FILE_CFG}" \
---lib "${SPECLIB}" \
---fasta "${FASTA}" \
---temp "${OUT_SUBDIR}/quant" \
-${ADD_FLAGS} \
---out "${OUT_SUBDIR}/reports/report.parquet" \
---threads "${THREADS}" \
---quant-ori-names \
---fix-scoring \
---verbose 1 \
+# Reconstruct FILE_CFG array from delimited string (arrays can't be exported)
+if [[ -n "${FILE_CFG_STR:-}" ]]; then
+  IFS='|' read -ra FILE_CFG <<< "${FILE_CFG_STR}"
+else
+  FILE_CFG=()
+fi
+
+# Build command with multiple file_cfg if provided
+DIANN_CMD=(diann --cfg "${SEARCH_CFG_TO_USE}")
+for cfg in "${FILE_CFG[@]}"; do
+  DIANN_CMD+=(--cfg "${cfg}")
+done
+
+"${DIANN_CMD[@]}" \
+  --lib "${SPECLIB}" \
+  --fasta "${FASTA}" \
+  --temp "${QUANT_DIR}" \
+  "${ADD_FLAGS[@]}" \
+  --out "${OUT_SUBDIR}/reports/report.parquet" \
+  --threads "${THREADS}" \
+  --quant-ori-names \
+  --fix-scoring \
+  --verbose 1
+
+LOG_FILE="${OUT_SUBDIR}/logs/${SLURM_JOB_NAME}_${SLURM_JOB_ID}.txt"
 
 if [[ "${SEARCH_MODE}" == "survey" ]]; then
 
@@ -125,3 +142,4 @@ else
 fi
 
 echo "==========================="
+fi

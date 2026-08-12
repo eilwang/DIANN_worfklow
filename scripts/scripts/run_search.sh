@@ -55,7 +55,14 @@ mkdir -p "${QUANT_DIR}"
 mkdir -p "${OUT_SUBDIR}/logs"
 mkdir -p "${OUT_SUBDIR}/reports"
 
-export FASTA SEARCH_CFG OUT_DIR THREADS SPECLIB FILE_CFG OUT_SUBDIR SEARCH_MODE
+# Convert FILE_CFG array to a delimited string for export (arrays can't be exported)
+if [[ ${#FILE_CFG[@]} -gt 0 ]]; then
+  FILE_CFG_STR=$(IFS='|'; echo "${FILE_CFG[*]}")
+else
+  FILE_CFG_STR=""
+fi
+
+export FASTA SEARCH_CFG OUT_DIR THREADS SPECLIB FILE_CFG_STR OUT_SUBDIR SEARCH_MODE QUANT_DIR
 
 sbatch \
   --job-name="${DATE}_${EXPERIMENT_NAME}_${SEARCH_MODE}" \
