@@ -106,6 +106,12 @@ for cfg in "${FILE_CFG[@]}"; do
   DIANN_CMD+=(--cfg "${cfg}")
 done
 
+# Add --use-quant flag if REUSE_QUANT is true
+if [[ "${REUSE_QUANT:-false}" == "true" ]]; then
+  DIANN_CMD+=(--use-quant)
+  echo "Reusing quantification: --use-quant enabled"
+fi
+
 "${DIANN_CMD[@]}" \
   --lib "${SPECLIB}" \
   --fasta "${FASTA}" \

@@ -10,6 +10,11 @@ paths:
   out_suffix: "" # if empty, uses out_dir/search_mode; if specified, appends to create out_dir/search_mode_suffix
   fasta: "/hpc/projects/mass_spec/FASTA/2026-07-20-reviewed-contam-Human_UP000005640.fas"
   speclib: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/insilico_libraries/20260723_2026-07-20-reviewed-contam-Human_UP000005640_20260722_searchspace_tryptic_L730_C14_noC_35020150.predicted.speclib"
+  file_cfg: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/searches/all/manifest.cfg"  # can be single path or list of paths
+  # file_cfg:  # Example of multiple file configs:
+  #   - "/path/to/manifest1.cfg"
+  #   - "/path/to/manifest2.cfg"
+  speclib: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/insilico_libraries/20260723_2026-07-20-reviewed-contam-Human_UP000005640_20260722_searchspace_tryptic_L730_C14_noC_35020150.predicted.speclib"
   file_cfg: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/searches/all/manifest.cfg"
   search_cfg: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/searches/all/20260722_search_LgQuant_FDR1_MA15_W7_RTprof.cfg"
 

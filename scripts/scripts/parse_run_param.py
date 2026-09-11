@@ -27,6 +27,7 @@ KEY_MAPPINGS = {
     "paths.speclib_dir": "SPECLIB_DIR",
     "experiment.name": "EXPERIMENT_NAME",
     "options.search_mode": "SEARCH_MODE",
+    "options.reuse_quant": "REUSE_QUANT",
     "options.survey": "SURVEY",
 }
 

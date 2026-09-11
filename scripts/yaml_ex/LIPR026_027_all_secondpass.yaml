@@ -10,7 +10,9 @@ paths:
   quant_dir: "" # if empty, defaults to out_subdir/quant; specify to use a shared quant dir across multiple searches (e.g., chunking)
   out_suffix: "" # if empty, uses out_dir/search_mode; if specified, appends to create out_dir/search_mode_suffix
   speclib: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/searches/all/first_pass/empirical_library/20260723_LIPR026_027_all_firstpass_35023337.empirical.parquet"
-  file_cfg: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/searches/all/manifest.cfg"
+  file_cfg: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/searches/all/manifest.cfg"  # can be single path or list of paths
+    # - "/path/to/manifest1.cfg"
+    # - "/path/to/manifest2.cfg"
   search_cfg: "/hpc/projects/mass_spec/projects/LIPR027/search_result/exploratory/diann/diann261/LIPR026_027_exploratory/searches/all/20260722_search_LgQuant_FDR1_MA15_W7_RTprof.cfg"
 
 options:
